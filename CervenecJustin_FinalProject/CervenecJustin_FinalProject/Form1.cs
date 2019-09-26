@@ -368,11 +368,13 @@ namespace CervenecJustin_FinalProject
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (textInfo.Text!="" )
+
+     
+            if ( listBox1.FindString(textInfo.Text)!=-1)
             {
                 listBox1.SelectedIndex = listBox1.FindString(textInfo.Text);
             }
-          
+
             else
             {
                 listBox1.SelectedItem = this;

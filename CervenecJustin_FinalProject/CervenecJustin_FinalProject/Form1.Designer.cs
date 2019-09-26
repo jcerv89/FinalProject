@@ -34,10 +34,10 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textNumber = new System.Windows.Forms.TextBox();
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fIleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnRandomTrivia = new System.Windows.Forms.Button();
             this.btnRandomDate = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -90,15 +90,6 @@
             this.groupBoxTools.TabIndex = 5;
             this.groupBoxTools.TabStop = false;
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(661, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
             // menuStrip2
             // 
             this.menuStrip2.BackColor = System.Drawing.Color.Azure;
@@ -125,6 +116,15 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(661, 24);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // btnRandomTrivia
             // 
