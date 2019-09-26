@@ -12,6 +12,16 @@ using System.Net;
 using System.IO;
 using MySql.Data.MySqlClient;
 
+
+/* ----TO DO----
+ * FIX SEARCH BAR
+ * ADD API YEAR BUTTON
+ * SET UP DATABASE COMMANDS
+ * ADD FILE SAVE
+ * ROTATE SCREEN
+ */
+ 
+
 namespace CervenecJustin_FinalProject
 {
 
@@ -24,7 +34,7 @@ namespace CervenecJustin_FinalProject
         //variables used during process
         WebClient aipConn = new WebClient();
         //string to hold start of API
-        string startAPI = "http://numbersapi.com/random/math?json";
+     
         //string to hold completed API
         string apiEndPoint;
         List<Data> numbersList = new List<Data>();
@@ -56,16 +66,22 @@ namespace CervenecJustin_FinalProject
             this.Size = new Size(376, 720);
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {//Exits the App when selected
+            Application.Exit();
+        }
+
         private void btnRandom_Click(object sender, EventArgs e)
         {
-            //string startAPI = "http://numbersapi.com/random/math?json";
+            //This gets math facts related to the random number genterated from API
+            string startAPI = "http://numbersapi.com/random/math?json";
             //string to hold completed API
             string apiEndPoint;
 
-            //Array for the Stock symbols from the listview
+            //Array for the  symbols from the listview
             string[] dataSymbols = new string[] { };
             numbersList.Clear();
-            //array for stocks selected to get
+            //array for selected to get
             int[] dataArray = new int[listBox1.SelectedItems.Count];
 
 
@@ -116,8 +132,86 @@ namespace CervenecJustin_FinalProject
 
                
                 
-                    //Adds data to List from pulled stock information.
+                    //Adds data to Listbox from pulled Number API information.
                     numbersList.Add(numberData);
+                listBox1.Items.Add(info);
+                textNumber.Text = number;
+              
+            }
+            catch
+            {
+
+            }
+
+          
+
+            //textInfo.Text = numbersList[0].Info;
+            //numericUpDownNumber.Value = numbersList[0].Number;
+        }
+
+        private void btnRandomTrivia_Click(object sender, EventArgs e)
+        {
+            //This gets data of trivia related stuff from the random number generated
+            string startAPI = "http://numbersapi.com/random/trivia?json";
+            //string to hold completed API
+            string apiEndPoint;
+
+            //Array for the symbols from the listview
+            string[] dataSymbols = new string[] { };
+            numbersList.Clear();
+            //array for  selected to get
+            int[] dataArray = new int[listBox1.SelectedItems.Count];
+
+
+            for (int i = 0; i < listBox1.SelectedItems.Count; i++)
+            {
+                dataArray[i] = listBox1.SelectedIndices[i];
+            }
+            string[] APisymbol = new string[dataArray.Length];
+
+            for (int n = 0; n < dataArray.Length; n++)
+            {
+                APisymbol[n] = dataSymbols[dataArray[n]];
+            }
+
+            string[] arrayStock = APisymbol;
+
+            string apiString = string.Join(",", APisymbol);
+
+            apiEndPoint = startAPI + apiString;
+
+           textInfo.Text = apiEndPoint;
+            try
+            {
+
+
+                //Checks for internet connection
+                var apiData = aipConn.DownloadString(apiEndPoint);
+
+                //Object to parse Api data pulled for variables below
+                JObject JSONOB = JObject.Parse(apiData);
+
+
+
+                Data numberData = new Data();
+                string number;
+                string info;
+
+                //gets the json object for the data
+
+                info = JSONOB["text"].ToString();
+                number = JSONOB["number"].ToString();
+
+                decimal num;
+                decimal.TryParse(number, out num);
+                numberData.Number = num;
+                numberData.Info = info;
+
+
+
+
+                //Adds data to Listbox from pulled Number api information.
+                numbersList.Add(numberData);
                 listBox1.Items.Add(info);
                 textNumber.Text = number;
             }
@@ -125,10 +219,125 @@ namespace CervenecJustin_FinalProject
             {
 
             }
-           
-            //textInfo.Text = numbersList[0].Info;
-            //numericUpDownNumber.Value = numbersList[0].Number;
+
         }
+
+        private void btnRandomDate_Click(object sender, EventArgs e)
+        {
+            //This gets data of trivia related stuff from the random number generated
+            string startAPI = "http://numbersapi.com/random/date?json";
+            //string to hold completed API
+            string apiEndPoint;
+
+            //Array for the symbols from the listview
+            string[] dataSymbols = new string[] { };
+            numbersList.Clear();
+            //array for  selected to get
+            int[] dataArray = new int[listBox1.SelectedItems.Count];
+
+
+            for (int i = 0; i < listBox1.SelectedItems.Count; i++)
+            {
+                dataArray[i] = listBox1.SelectedIndices[i];
+            }
+            string[] APisymbol = new string[dataArray.Length];
+
+            for (int n = 0; n < dataArray.Length; n++)
+            {
+                APisymbol[n] = dataSymbols[dataArray[n]];
+            }
+
+            string[] arrayStock = APisymbol;
+
+            string apiString = string.Join(",", APisymbol);
+
+            apiEndPoint = startAPI + apiString;
+
+            // textInfo.Text = apiEndPoint;
+            try
+            {
+
+
+                //Checks for internet connection
+                var apiData = aipConn.DownloadString(apiEndPoint);
+
+                //Object to parse Api data pulled for variables below
+                JObject JSONOB = JObject.Parse(apiData);
+
+
+
+                Data numberData = new Data();
+                string number;
+                string info;
+
+                //gets the json object for the data
+
+                info = JSONOB["text"].ToString();
+                number = JSONOB["number"].ToString();
+
+                decimal num;
+                decimal.TryParse(number, out num);
+                numberData.Number = num;
+                numberData.Info = info;
+
+
+
+
+                //Adds data to Listbox from pulled Number api information.
+                numbersList.Add(numberData);
+                listBox1.Items.Add(info);
+                textNumber.Text = number;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (textInfo.Text!="" )
+            {
+                listBox1.SelectedIndex = listBox1.FindString(textInfo.Text);
+            }
+          
+            else
+            {
+                listBox1.SelectedItem = this;
+                MessageBox.Show("Not Found");
+            }
+        }
+
+        //private void UpdateMath(Data updatedData, Data oldData)
+        //{
+        //    //Method to update the database with any changed information
+        //    Data dataToUpdate = updatedData;
+        //    Data dataToCheck = oldData;
+
+        //    try
+        //    {
+
+        //        conn.Open();
+
+
+        //        string updateSql = $"Update Math SET Number = '{dataToUpdate.Number}', Info = '{dataToUpdate.Info}' where Number = '{dataToCheck.Number}';";
+
+
+        //        MySqlCommand updatecmd = new MySqlCommand(updateSql, conn);
+        //        MySqlDataReader reader1;
+
+        //        reader1 = updatecmd.ExecuteReader();
+
+        //        conn.Close();
+
+        //    }
+        //    catch (MySqlException e)
+
+        //    {
+        //        MessageBox.Show($"ah shoot\n\n {e}");
+        //    }
+
     }
+
 }
 
