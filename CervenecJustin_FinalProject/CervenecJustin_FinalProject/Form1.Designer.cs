@@ -41,6 +41,7 @@
             this.btnRandomTrivia = new System.Windows.Forms.Button();
             this.btnRandomDate = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnYear = new System.Windows.Forms.Button();
             this.groupBoxTools.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +55,7 @@
             // 
             // btnRandom
             // 
-            this.btnRandom.Location = new System.Drawing.Point(75, 740);
+            this.btnRandom.Location = new System.Drawing.Point(75, 680);
             this.btnRandom.Name = "btnRandom";
             this.btnRandom.Size = new System.Drawing.Size(145, 75);
             this.btnRandom.TabIndex = 2;
@@ -127,7 +128,7 @@
             // 
             // btnRandomTrivia
             // 
-            this.btnRandomTrivia.Location = new System.Drawing.Point(75, 837);
+            this.btnRandomTrivia.Location = new System.Drawing.Point(75, 781);
             this.btnRandomTrivia.Name = "btnRandomTrivia";
             this.btnRandomTrivia.Size = new System.Drawing.Size(145, 75);
             this.btnRandomTrivia.TabIndex = 7;
@@ -137,7 +138,7 @@
             // 
             // btnRandomDate
             // 
-            this.btnRandomDate.Location = new System.Drawing.Point(75, 936);
+            this.btnRandomDate.Location = new System.Drawing.Point(75, 880);
             this.btnRandomDate.Name = "btnRandomDate";
             this.btnRandomDate.Size = new System.Drawing.Size(145, 75);
             this.btnRandomDate.TabIndex = 8;
@@ -155,6 +156,16 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnYear
+            // 
+            this.btnYear.Location = new System.Drawing.Point(75, 986);
+            this.btnYear.Name = "btnYear";
+            this.btnYear.Size = new System.Drawing.Size(145, 75);
+            this.btnYear.TabIndex = 10;
+            this.btnYear.Text = "Random Year";
+            this.btnYear.UseVisualStyleBackColor = true;
+            this.btnYear.Click += new System.EventHandler(this.btnYear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -164,6 +175,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(661, 1280);
+            this.Controls.Add(this.btnYear);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnRandomDate);
             this.Controls.Add(this.btnRandomTrivia);
@@ -199,6 +211,7 @@
         private System.Windows.Forms.Button btnRandomTrivia;
         private System.Windows.Forms.Button btnRandomDate;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnYear;
     }
 }
 

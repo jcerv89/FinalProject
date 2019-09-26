@@ -294,6 +294,78 @@ namespace CervenecJustin_FinalProject
             }
         }
 
+
+        private void btnYear_Click(object sender, EventArgs e)
+        {
+            //This gets data of trivia related stuff from the random number generated
+            string startAPI = "http://numbersapi.com/random/year?json";
+            //string to hold completed API
+            string apiEndPoint;
+
+            //Array for the symbols from the listview
+            string[] dataSymbols = new string[] { };
+            numbersList.Clear();
+            //array for  selected to get
+            int[] dataArray = new int[listBox1.SelectedItems.Count];
+
+
+            for (int i = 0; i < listBox1.SelectedItems.Count; i++)
+            {
+                dataArray[i] = listBox1.SelectedIndices[i];
+            }
+            string[] APisymbol = new string[dataArray.Length];
+
+            for (int n = 0; n < dataArray.Length; n++)
+            {
+                APisymbol[n] = dataSymbols[dataArray[n]];
+            }
+
+            string[] arrayStock = APisymbol;
+
+            string apiString = string.Join(",", APisymbol);
+
+            apiEndPoint = startAPI + apiString;
+
+            // textInfo.Text = apiEndPoint;
+            try
+            {
+
+
+                //Checks for internet connection
+                var apiData = aipConn.DownloadString(apiEndPoint);
+
+                //Object to parse Api data pulled for variables below
+                JObject JSONOB = JObject.Parse(apiData);
+
+
+
+                Data numberData = new Data();
+                string number;
+                string info;
+
+                //gets the json object for the data
+
+                info = JSONOB["text"].ToString();
+                number = JSONOB["number"].ToString();
+
+                decimal num;
+                decimal.TryParse(number, out num);
+                numberData.Number = num;
+                numberData.Info = info;
+
+
+
+
+                //Adds data to Listbox from pulled Number api information.
+                numbersList.Add(numberData);
+                listBox1.Items.Add(info);
+                textNumber.Text = number;
+            }
+            catch
+            {
+
+            }
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (textInfo.Text!="" )
@@ -307,6 +379,7 @@ namespace CervenecJustin_FinalProject
                 MessageBox.Show("Not Found");
             }
         }
+
 
         //private void UpdateMath(Data updatedData, Data oldData)
         //{
